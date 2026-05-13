@@ -33,7 +33,7 @@ async function loadSlides(){
 
     renderThumbnails();
 
-    updateSlide(false);
+    updateSlide();
 
   }catch(error){
 
@@ -61,6 +61,8 @@ function renderThumbnails(){
 
     item.className =
       "thumbnail-item";
+
+    /* IMAGE */
 
     const thumb =
       document.createElement("img");
@@ -95,7 +97,8 @@ function renderThumbnails(){
     downloadBtn.className =
       "thumb-download";
 
-    downloadBtn.innerHTML = "⬇";
+    downloadBtn.innerHTML =
+      "⬇ Unduh";
 
     item.appendChild(thumb);
 
@@ -143,6 +146,23 @@ function updateActiveThumbnail(){
 
   });
 
+  const activeThumb =
+    thumbnailContainer.querySelector(
+      ".active-thumb"
+    );
+
+  if(activeThumb){
+
+    activeThumb.scrollIntoView({
+
+      behavior:"smooth",
+      inline:"center",
+      block:"nearest"
+
+    });
+
+  }
+
 }
 
 /* =========================
@@ -175,6 +195,9 @@ function changeSlide(direction){
 ========================= */
 
 function openFullscreen(){
+
+  fullscreenImage.src =
+    images[currentIndex];
 
   fullscreenModal.style.display =
     "flex";
